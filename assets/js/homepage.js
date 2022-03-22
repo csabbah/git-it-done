@@ -2,20 +2,22 @@ var getUserRepos = function (user) {
   // format the github api url
   var apiUrl = `https://api.github.com/users/${user}/repos`;
 
-  // make a request to the url
+  // Make a request to the url
   fetch(apiUrl)
     .then(function (response) {
       // request was successful
       if (response.ok) {
+        // If response is ok, handle the data
         response.json().then(function (data) {
           displayRepos(data, user);
         });
       } else {
+        // If the connection is ok but no data is returned, execute this
         alert('Error: GitHub User Not Found');
       }
     })
     .catch(function (error) {
-      // Notice this `.catch()` getting chained onto the end of the `.then()` method
+      // If there is no connection at all, execute this
       alert('Unable to connect to GitHub');
     });
 };
