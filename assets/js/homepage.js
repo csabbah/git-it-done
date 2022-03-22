@@ -43,15 +43,17 @@ var displayRepos = function (repos, searchTerm) {
     return;
   }
 
-  console.log(repos);
-  console.log(searchTerm);
   // clear old content
   repoContainerEl.textContent = '';
   repoSearchTerm.textContent = searchTerm;
 
   repos.forEach((item) => {
-    var repoEl = document.createElement('div');
+    // format repo name
+    var repoName = item.owner.login + '/' + item.name;
+
+    var repoEl = document.createElement('a');
     repoEl.classList = 'list-item flex-row justify-space-between align-center';
+    repoEl.setAttribute('href', './single-repo.html?repo=' + repoName);
 
     // create a span element to hold repository name
     var titleEl = document.createElement('span');
